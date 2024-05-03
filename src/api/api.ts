@@ -1,5 +1,5 @@
 export interface ITask {
-    id: number,
+    id: string,
     text: string
 }
 
@@ -13,3 +13,16 @@ export const getData = async (): Promise<ITask[]> => {
     const todoList = await response.json();
     return todoList;
 };
+
+export const postData = async (newTask: ITask): Promise<ITask> => {
+    const response = await fetch(`${baseUrl}/tasks`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newTask)
+    })
+    const todoList = await response.json();
+    return todoList;
+}
