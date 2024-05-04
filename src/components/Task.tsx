@@ -50,16 +50,14 @@ export default function Task ({task}: TaskProps) {
       >
         <div className="flex gap-2 items-center">
             <input
-            type="checkbox"
-            checked={isTaskDone}
-            id={`check-done-${task.id}`}
-            className="appearance-none w-4 h-4 border checkbox checkbox-xs mr-5 rounded-full bg-white border-black checked:bg-gray-800 checked:border-0 relative peer shrink-0"
-            onChange={handleDoneTask}
+                type="checkbox"
+                checked={isTaskDone}
+                id={`check-done-${task.id}`}
+                className="appearance-none w-4 h-4 border checkbox checkbox-xs mr-5 rounded-full bg-white border-black checked:bg-gray-800 checked:border-0 relative peer shrink-0"
+                onChange={handleDoneTask}
             />
             <label htmlFor={`check-done-${task.id}`} className={`${isTaskDone ? "line-through" : ""}`}>
-            {" "}
-            {task.text}
-            {" "}
+                {" "}{task.text}{" "}
             </label>
             <svg
                 className="
@@ -76,7 +74,7 @@ export default function Task ({task}: TaskProps) {
                 strokeLinejoin="round"
                 >
                 <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
+            </svg>  
         </div>
       </td>
       <td className="flex justify-center items-center px-6 py-2">
