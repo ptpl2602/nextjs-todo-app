@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "id": "2",
+      "text": "study",
+      "isDone": false
+    },
+    {
+      "id": "d38f",
+      "text": "cook for dinner",
+      "isDone": false
+    },
+    {
+      "id": "770e",
+      "text": "clean the house",
+      "isDone": false
+    }
+  ]
+}
