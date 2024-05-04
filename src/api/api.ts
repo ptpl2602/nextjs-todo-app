@@ -1,6 +1,7 @@
 export interface ITask {
     id: string,
-    text: string
+    text: string,
+    isDone: boolean
 }
 
 const baseUrl = 'http://localhost:3001';

@@ -23,12 +23,14 @@ export default function ModalAddTask({modalOpen, setModalOpen, taskValue, setTas
         if(isEditing && taskId) {
             await putData( {
                 id: taskId,
-                text: taskValue
+                text: taskValue,
+                isDone: false
             })
         } else {
             await postData( {
                 id: uuid,
-                text: taskValue
+                text: taskValue,
+                isDone: false
             })
             setTaskValue('');
         }
