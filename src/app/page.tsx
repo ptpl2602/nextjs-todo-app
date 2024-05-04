@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <main className="w-full mx-auto mt-4">
       <div className="text-center flex flex-col gap-4">
-        <h1 className="text-2xl font-bold my-2">To-do List App</h1>
+        <h1 className="text-2xl font-bold my-1">To-do List App</h1>
         <AddTask/>
         <div className="text-center">
           <TodoList tasks={tasks}/>

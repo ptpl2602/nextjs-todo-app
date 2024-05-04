@@ -39,3 +39,13 @@ export const putData = async (updateTask: ITask): Promise<ITask> => {
     const todoList = await response.json();
     return todoList;
 }
+
+export const deleteData = async (id : string): Promise<void> => {
+    await fetch(`${baseUrl}/tasks/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+}

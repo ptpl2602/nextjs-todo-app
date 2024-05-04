@@ -1,10 +1,6 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "text": "buy pens"
-    },
-    {
       "id": "2",
       "text": "study"
     },

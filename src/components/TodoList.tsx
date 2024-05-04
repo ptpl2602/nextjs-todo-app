@@ -8,7 +8,7 @@ interface TodoListProps {
 export default function TodoList({tasks}: TodoListProps) {
     return (
         <div className="flex justify-center relative overflow-y-auto">
-            <table className="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table className="w-2/5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-2xs text-[#050708] uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3 rounded-s-lg">
