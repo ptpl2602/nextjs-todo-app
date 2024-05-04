@@ -1,10 +1,11 @@
 'use client'
 
-import { FormEventHandler, useState } from 'react';
+import { useState } from 'react';
 import ModalAddTask from './Modal';
 
 export default function AddTask() {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [newTaskValue, setNewTaskValue] = useState<string>('');
 
     function handleClickModal(open: boolean) {
         setModalOpen(open);
@@ -21,7 +22,7 @@ export default function AddTask() {
                 </button>
             </div>
 
-            <ModalAddTask modalOpen={modalOpen} setModalOpen={() => handleClickModal(false)}/>
+            <ModalAddTask modalOpen={modalOpen} setModalOpen={() => handleClickModal(false)} taskValue={newTaskValue} setTaskValue={setNewTaskValue} isEditing={false} taskId={''}/>
         </>
     )
 }

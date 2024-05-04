@@ -26,3 +26,16 @@ export const postData = async (newTask: ITask): Promise<ITask> => {
     const todoList = await response.json();
     return todoList;
 }
+
+export const putData = async (updateTask: ITask): Promise<ITask> => {
+    const response = await fetch(`${baseUrl}/tasks/${updateTask.id}`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateTask)
+    })
+    const todoList = await response.json();
+    return todoList;
+}

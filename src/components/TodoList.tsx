@@ -14,7 +14,7 @@ export default function TodoList({tasks}: TodoListProps) {
                         <th scope="col" className="px-6 py-3 rounded-s-lg">
                             Task
                         </th>
-                        <th scope="col" className="text-center px-6 py-3 rounded-e-lg">
+                        <th scope="col" className="w-9/12 text-center px-6 py-3 rounded-e-lg">
                             Action
                         </th>
                     </tr>

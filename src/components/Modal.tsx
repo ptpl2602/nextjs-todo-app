@@ -1,31 +1,45 @@
-import { postData } from "@/api/api";
-import { useState } from "react"
+import { postData, putData } from "@/api/api";
+import React from "react"
 import { useRouter } from "next/navigation";
 import { uuid } from "uuidv4";
 
 interface ModalProps {
     modalOpen: boolean,
-    setModalOpen: (open: boolean) => void
+    setModalOpen: (open: boolean) => void,
+    taskValue: string,
+    setTaskValue: (open: string) => void,
+    isEditing: boolean,
+    taskId : string
 }
 
-export default function ModalAddTask({modalOpen, setModalOpen} : ModalProps) {    
-    const [newTaskValue, setNewTaskValue] = useState<string>('');
+export default function ModalAddTask({modalOpen, setModalOpen, taskValue, setTaskValue, isEditing, taskId} : ModalProps) {    
+    
     const { uuid } = require('uuidv4');
     const router = useRouter();
 
-    async function handleSubmitNewTask() {
-        await postData( {
-            id: uuid,
-            text: newTaskValue
-        })
-        setNewTaskValue('');
+    async function handleSubmitTask(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        if(isEditing && taskId) {
+            await putData( {
+                id: taskId,
+                text: taskValue
+            })
+        } else {
+            await postData( {
+                id: uuid,
+                text: taskValue
+            })
+        }
+
+        setTaskValue('');
         setModalOpen(true);
-        console.log(newTaskValue);
+        console.log(taskValue);
         router.refresh();
     }
 
     function handleCloseModal() {
-        setNewTaskValue('')
+        setTaskValue('')
         setModalOpen(false)
     }
 
@@ -41,7 +55,7 @@ export default function ModalAddTask({modalOpen, setModalOpen} : ModalProps) {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Add new task
+                {isEditing ? "Update task" : "Add new task"}
               </h3>
               <button
                 type="button"
@@ -58,9 +72,9 @@ export default function ModalAddTask({modalOpen, setModalOpen} : ModalProps) {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                   />
                 </svg>
@@ -69,10 +83,10 @@ export default function ModalAddTask({modalOpen, setModalOpen} : ModalProps) {
             </div>
 
             <div className="p-4 md:p-5">
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmitTask}>
                 <input
-                    value={newTaskValue}
-                    onChange={e => setNewTaskValue(e.target.value)}
+                    value={taskValue}
+                    onChange={e => setTaskValue(e.target.value)}
                   type="text"
                   className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="Ex: to cook for lunch"
@@ -80,10 +94,9 @@ export default function ModalAddTask({modalOpen, setModalOpen} : ModalProps) {
                 />
                 <button
                    type="submit"
-                   onClick={handleSubmitNewTask}
-                  className="w-2/6 text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30"
+                   className="w-2/6 text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30"
                 >
-                  <span className="font-semibold uppercase">Submit</span>
+                  <span className="font-semibold uppercase">{isEditing ? 'Update' : 'Submit'}</span>
                 </button>
               </form>
             </div>
